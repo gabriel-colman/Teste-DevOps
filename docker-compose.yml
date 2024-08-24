@@ -1,0 +1,19 @@
+version: '3'
+services:
+  icecast:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: icecast-container
+    ports:
+      - "8000:8000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx-container
+    ports:
+      - "80:80"
+    depends_on:
+      - icecast
